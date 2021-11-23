@@ -5,14 +5,16 @@ solc编译合约
 1、安装 nodejs
 
 2、安装 web3j
+curl -L get.web3j.io | sh && source ~/.web3j/source.sh
 
 3、安装 solc
+npm install -g solc
 
 4、合约代码放在src/main/resources/solidity
 
 5、安装 @openzeppelin
 npm install @openzeppelin/contracts
-把 生成的@openzeppelin文件移到src/main/resources/solidity
+* 把 生成的@openzeppelin文件移到src/main/resources/solidity, 不然合约编译会报错，无法找到openzeppelin路径
 
 6、生成abi，bin文件
 solcjs AuctionMarket.sol --abi --bin --optimize -o ./build
