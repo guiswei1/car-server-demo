@@ -1,29 +1,26 @@
 # Getting Started
 
-### Reference Documentation
-For further reference, please consider the following sections:
+solc编译合约
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/maven-plugin/reference/html/#build-image)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#using-boot-devtools)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#boot-features-jpa-and-spring-data)
-* [Spring Data JDBC](https://docs.spring.io/spring-data/jdbc/docs/current/reference/html/)
-* [Spring Data Redis (Access+Driver)](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#boot-features-redis)
+1、安装 nodejs
 
-### Guides
-The following guides illustrate how to use some features concretely:
+2、安装 web3j
 
-* [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-* [Using Spring Data JDBC](https://github.com/spring-projects/spring-data-examples/tree/master/jdbc/basics)
-* [Messaging with Redis](https://spring.io/guides/gs/messaging-redis/)
+3、安装 solc
 
-### 枚举类转换i18n正则替换
+4、合约代码放在src/main/resources/solidity
 
-```
-(.*\()(\d{1,3})(,\s\")(.*)(\"\)),
-WalletOperateTypeEnum.$2=$4
-```
-# car-server-demo
-# car-server-demo
+5、安装 @openzeppelin
+npm install @openzeppelin/contracts
+把 生成的@openzeppelin文件移到src/main/resources/solidity
+
+6、生成abi，bin文件
+solcjs AuctionMarket.sol --abi --bin --optimize -o ./build
+
+7、生成包装类
+web3j generate solidity -a src/main/resources/solidity/build/AuctionMarket_sol_AuctionMarket.abi -b src/main/resources/solidity/build/AuctionMarket_sol_AuctionMarket.bin -o src/main/java/ -p com.odcchina.cafoserver.contract
+
+
+
+代码 com.odcchina.cafoserver.contract.AuctionMarket 生成的包装类。监听合约事件和调用合约方法
+com.odcchina.cafoserver.contract.ContractHelper  合约调用
