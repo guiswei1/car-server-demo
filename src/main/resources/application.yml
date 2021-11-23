@@ -1,0 +1,25 @@
+server:
+  port: 18080
+  shutdown: graceful
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  profiles:
+    active: dev
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+
+  application:
+    name: car-server
+
+logging:
+  level:
+    root: WARN
+    com.odcchina: INFO
+
+com.odcchina:
+  task:
+    enable: true
